@@ -1,0 +1,29 @@
+# Python
+meeting_maverick_env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Environment Variables
+.env
+
+# VSCode/IDE settings
+.vscode/
+.idea/
+
+# Logs & temp
+*.log
+*.tmp
+
+# Frontend - Node
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+
+# MacOS/Linux
+.DS_Store
+
+# Windows
+Thumbs.db
