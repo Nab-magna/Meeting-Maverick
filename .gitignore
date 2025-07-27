@@ -1,29 +1,42 @@
-# Python
-meeting_maverick_env/
+# === Backend (FastAPI) ===
+backend_env/
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
 *.sqlite3
+*.db
 
-# Environment Variables
+# Backend: Python virtual environments (local/venv)
+backend_env/
+env/
+*.egg-info/
+
+# === Environment Variables ===
 .env
+.env.*      # e.g., .env.local, .env.development
 
-# VSCode/IDE settings
+# === Frontend (Next.js + TS) ===
+frontend/node_modules/
+frontend/.next/
+frontend/dist/
+frontend/.env.local
+frontend/.env.development
+frontend/.env.production
+
+# Lock files (optional, if you use one consistently)
+# yarn.lock
+package-lock.json
+# pnpm-lock.yaml
+
+# === IDE/Editor Settings ===
 .vscode/
 .idea/
 
-# Logs & temp
+# === Logs & Temporary Files ===
 *.log
 *.tmp
+*.bak
 
-# Frontend - Node
-frontend/node_modules/
-frontend/dist/
-frontend/.env.local
-
-# MacOS/Linux
-.DS_Store
-
-# Windows
-Thumbs.db
+# === OS-specific files ===
+.DS_Store      # macOS
+Thumbs.db      # Windows
+ehthumbs.db    # Windows thumbnails

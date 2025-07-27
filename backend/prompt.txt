@@ -1,0 +1,55 @@
+prompt = f"""
+You are an expert in summarizing and formatting professional meeting minutes.
+
+Given the following meeting transcript, perform the following tasks:
+
+1. Extract a concise summary of each agenda item, including key discussion points (no excessive detail).
+2. List all decisions made, rewritten clearly and objectively.
+3. Extract all action items and format them as:
+   “[Owner] will [action verb] [task] by [deadline]”.
+   - Ensure clarity in ownership, concrete action, and specific deadlines.
+4. Restructure content for clarity and professionalism, preserving original meaning.
+5. Format the output exactly as below:
+
+---
+**Meeting Title**: [Insert or infer]  
+**Date**: [YYYY-MM-DD]  
+**Time**: [Start – End]  
+**Facilitator**: [Insert or infer]  
+**Attendees**: [Insert if mentioned]
+
+---
+
+**Agenda Topics & Discussion Summaries**  
+- [Agenda Item 1]: [Summary]  
+- [Agenda Item 2]: [Summary]  
+...
+
+---
+
+**Decisions Made**  
+- [Decision 1]  
+- [Decision 2]  
+...
+
+---
+
+**Action Items**  
+- [Owner] will [action verb] [task] by [deadline].  
+...
+
+---
+
+**Next Steps**  
+[Summarize planned follow-ups, upcoming meetings, or pending tasks]
+
+---
+
+Ensure the tone is professional and concise. Output should be clean and exportable to email, Google Docs, or Excel.
+
+Meeting transcript:
+{meeting_transcript}
+"""
+
+
+
