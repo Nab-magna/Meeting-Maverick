@@ -3,7 +3,8 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
-
+import { handleExport } from "@/app/utils/handleExport";
+import Toast from "@/app/components/Toast"
 interface SummaryResponse {
   summary: string;
 }
@@ -13,8 +14,10 @@ export default function Home() {
   const [summary, setSummary] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>("");
-
-
+  const [toast, setToast] = useState<{
+    message: string;
+    type: "success" | "error";
+  } | null>(null);
 
   const handleSummarize = async () => {
     if (!transcript.trim()) return;
@@ -41,16 +44,9 @@ export default function Home() {
     }
   };
 
-  const handleExportNotion=()=>{
-
-  };
-  const handleExportSlack=()=>{
-
-  };
-  const handleExportGmail=()=>{
-
-  };
-
+  const handleNotionClick = () => handleExport("notion", setToast);
+  const handleSlackClick = () => handleExport("slack", setToast);
+  const handleGmailClick = () => handleExport("gmail", setToast);
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen px-4 py-6 bg-gray-50">
@@ -109,8 +105,10 @@ export default function Home() {
           <div className="mt-8 flex items-center gap-4">
             <h2 className="text-lg font-medium">Export to</h2>
 
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
-            onClick={handleExportNotion}>
+            <button
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition"
+              onClick={handleNotionClick}
+            >
               <Image
                 src="/notion-icon.png"
                 alt="Notion"
@@ -120,19 +118,30 @@ export default function Home() {
               Notion
             </button>
 
-            <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg shadow-sm hover:bg-green-700 transition"
-            onClick={handleExportSlack}>
+            <button
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg shadow-sm hover:bg-green-700 transition"
+              onClick={handleSlackClick}
+            >
               <Image src="/slack_icon.png" alt="Slack" width={20} height={20} />
               Slack
             </button>
 
-            <button className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg shadow-sm hover:bg-red-700 transition"
-            onClick={handleExportGmail}>
+            <button
+              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg shadow-sm hover:bg-red-700 transition"
+              onClick={handleGmailClick}
+            >
               <Image src="/gmail-icon.jpg" alt="Gmail" width={20} height={20} />
               Email
             </button>
           </div>
         </div>
+      )}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
       )}
     </main>
   );
